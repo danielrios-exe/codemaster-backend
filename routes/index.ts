@@ -1,15 +1,12 @@
 import express from 'express';
-
+import ExampleRouter from './example-router';
 function buildRouter(app: express.Express) {
-  const router = express.Router();
+    const router = express.Router();
 
-  // Quantiy catalogue route
-  router.get('/', (req, res) => {
-    res.json('hello world');
-  });
+    router.use('/example', ExampleRouter);
 
-  // Root route
-  app.use('/api', router);
+    // Root route
+    app.use('/api', router);
 }
 
 export default buildRouter;
