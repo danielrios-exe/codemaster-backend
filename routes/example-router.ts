@@ -4,9 +4,8 @@ import ExampleService from '../services/example-service';
 const router = express.Router();
 const example = new ExampleService();
 
-router.get('/', (req, res) => {
-    console.log('GET /example called');
-    const exampleObject = example.get();
+router.get('/', async (req, res) => {
+    const exampleObject = await example.get();
     res.json(exampleObject);
 });
 
