@@ -1,9 +1,7 @@
 import MongoDBClient from '../db/mongodb-client';
 
 class Example {
-    constructor() {
-        console.log('Example service loaded');
-    }
+    constructor() {}
 
     getById(id: number) {
         return {
