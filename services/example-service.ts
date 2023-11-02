@@ -1,3 +1,5 @@
+import MongoDBClient from '../db/mongodb-client';
+
 class Example {
     constructor() {
         console.log('Example service loaded');
@@ -10,17 +12,14 @@ class Example {
         };
     }
 
-    get() {
-        return [
-            {
-                id: 1,
-                name: 'Example',
-            },
-            {
-                id: 2,
-                name: 'Example 2',
-            },
-        ];
+    async get() {
+        const client = await MongoDBClient.getClient();
+        const objects = await client
+            .db('codemaster')
+            .collection('test')
+            .find()
+            .toArray();
+        return objects;
     }
 
     create(name: string) {
