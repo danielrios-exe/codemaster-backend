@@ -18,5 +18,4 @@ app.use(express.json());
 buildRouter(app);
 
 // Start listening for requests
-console.log('Listening on port ' + port + '...');
 app.listen(port);
