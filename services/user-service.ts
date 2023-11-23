@@ -42,6 +42,10 @@ class UserService {
         const authService = new AuthenticationService();
         const userFromDB = await this.getUserByUsername(username);
 
+        if (!userFromDB) {
+            throw Errors.UNAUTHORIZED;
+        }
+
         const decryptedPassword = authService.decryptor(userFromDB.password);
         const isUserValid = password === decryptedPassword;
 
@@ -87,6 +91,19 @@ class UserService {
         newUser.id = mongoUser.insertedId.toString();
 
         return { token, createdUser: newUser };
+    }
+
+    getUserInfo() {
+        return {
+            _id: '655ef434b6c346af815b301f',
+            username: 'danielrios.exe',
+            name: 'daniel',
+            lastName: 'rios',
+            email: 'danielrios.exe@hotmail.com',
+            ranking: 1,
+            profession: 'developer',
+            desription: 'I am a developer',
+        };
     }
 
     validateUserInput(user: User) {
