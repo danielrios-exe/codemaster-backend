@@ -28,7 +28,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.2.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vm2": "^3.9.19"
   },
   "devDependencies": {
     "@types/cors": "^2.8.15",
