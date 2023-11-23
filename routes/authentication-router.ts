@@ -52,4 +52,8 @@ router.post('/register', async (req, res) => {
     }
 });
 
+router.get('/user', async (req, res) => {
+    return res.send(userService.getUserInfo());
+});
+
 export default router;
