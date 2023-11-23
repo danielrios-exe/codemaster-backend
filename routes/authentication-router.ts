@@ -34,6 +34,7 @@ router.post('/token', async (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         const user: UserType = req.body;
+        console.log(req.body);
 
         // Validate input
         userService.validateUserInput(user);

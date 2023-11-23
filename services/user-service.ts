@@ -107,6 +107,7 @@ class UserService {
     }
 
     validateUserInput(user: User) {
+        console.log(user);
         const { username, password, name, lastName, email } = user;
 
         if (!username || !password || !name || !lastName || !email) {
