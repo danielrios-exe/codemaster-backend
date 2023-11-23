@@ -10,6 +10,10 @@ interface VariablesInterface {
         host: string;
         options?: string;
     };
+    auth: {
+        authSecret: string;
+        cipherSecret: string;
+    };
 }
 
 // Loads .env file content into process.env
@@ -25,6 +29,10 @@ const Variables: VariablesInterface = {
         password: process.env.DB_PASSWORD || '',
         host: process.env.DB_HOST || '',
         options: process.env.DB_OPTIONS || '',
+    },
+    auth: {
+        cipherSecret: process.env.CIPHER_SECRET || '',
+        authSecret: process.env.AUTH_SECRET || '',
     },
 };
 
