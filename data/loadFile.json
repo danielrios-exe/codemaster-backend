@@ -18,5 +18,20 @@
         "title": "Building Complex Applications",
         "description": "JavaScript's evolution has extended its role beyond the frontend. With the advent of Node.js, JavaScript can now be used for server-side development. This full-stack capability allows developers to create end-to-end applications using a single programming language. Full-stack JavaScript development is not only practical but also aligns with industry trends. Learning JavaScript in-depth opens doors to building diverse applications, from small interactive websites to large-scale, data-intensive systems. It's a valuable skill set for as",
         "imageURL": "https://image.ibb.co/ctSLu9/Work_Section2_freelance_img3.png"
+    },
+    {
+        "title": "Asignacion de variables",
+        "description": "La asignación de variables en JavaScript ofrece flexibilidad y dinamismo. Permite declarar y asignar en una sola línea, reasignar valores, y usar operaciones abreviadas.",
+        "textArea": "let x;\n let x = 10;\n let x = 'Holaaa que taaal !!';"
+    },
+    {
+        "title": "Funciones",
+        "description": "Una función es un bloque de código reutilizable que realiza una tarea o calcula un valor. Las funciones se utilizan para dividir el código en bloques más pequeños y manejables, lo que facilita la lectura, el mantenimiento y la reutilización del código. Aquí hay algunos conceptos básicos sobre las funciones en JavaScript.",
+        "textArea": "let x = 10; \nlet y = 20; \nfunction sumar(x,y){\n\tlet resultado = x + y; \n\tconsole.log(resultado);\n }"
+    },
+    {
+        "title": "Ciclos",
+        "description": "En JavaScript, los ciclos permiten ejecutar un bloque de código repetidamente. Dos de los ciclos más comunes son for y while. Los ciclos for se utilizan para ejecutar un bloque de código un número determinado de veces, mientras que los ciclos while se utilizan para ejecutar un bloque de código mientras se cumple una condición. Aquí hay algunos conceptos básicos sobre los ciclos en JavaScript.",
+        "textArea": "//Ciclo For \nfor (let i = 1; i <= 5; i++) {\n\tconsole.log(i);\n}\n//Ciclo While \nlet i = 1;\nwhile (i <= 5) {\n\tconsole.log(i);\n\ti++;\n}"
     }
 ]
