@@ -18,5 +18,80 @@
         "title": "Building Complex Applications",
         "description": "JavaScript's evolution has extended its role beyond the frontend. With the advent of Node.js, JavaScript can now be used for server-side development. This full-stack capability allows developers to create end-to-end applications using a single programming language. Full-stack JavaScript development is not only practical but also aligns with industry trends. Learning JavaScript in-depth opens doors to building diverse applications, from small interactive websites to large-scale, data-intensive systems. It's a valuable skill set for as",
         "imageURL": "https://image.ibb.co/ctSLu9/Work_Section2_freelance_img3.png"
+    },
+    {
+        "title": "Asignacion de variables",
+        "description": "La asignación de variables en JavaScript ofrece flexibilidad y dinamismo. Permite declarar y asignar en una sola línea, reasignar valores, y usar operaciones abreviadas.",
+        "textArea": "let x;\n let x = 10;\n let x = 'Holaaa que taaal !!';"
+    },
+    {
+        "title": "Funciones",
+        "description": "Una función es un bloque de código reutilizable que realiza una tarea o calcula un valor. Las funciones se utilizan para dividir el código en bloques más pequeños y manejables, lo que facilita la lectura, el mantenimiento y la reutilización del código. Aquí hay algunos conceptos básicos sobre las funciones en JavaScript.",
+        "textArea": "let x = 10; \nlet y = 20; \nfunction sumar(x,y){\n\tlet resultado = x + y; \n\tconsole.log(resultado);\n }"
+    },
+    {
+        "title": "Ciclos",
+        "description": "En JavaScript, los ciclos permiten ejecutar un bloque de código repetidamente. Dos de los ciclos más comunes son for y while. Los ciclos for se utilizan para ejecutar un bloque de código un número determinado de veces, mientras que los ciclos while se utilizan para ejecutar un bloque de código mientras se cumple una condición. Aquí hay algunos conceptos básicos sobre los ciclos en JavaScript.",
+        "textArea": "//Ciclo For \nfor (let i = 1; i <= 5; i++) {\n\tconsole.log(i);\n}\n//Ciclo While \nlet i = 1;\nwhile (i <= 5) {\n\tconsole.log(i);\n\ti++;\n}"
+    },
+    {
+        "title" : "Desentrañando la Potencia de los Métodos en JavaScript",
+        "description": "Los métodos en JavaScript son funciones asociadas a objetos que realizan operaciones específicas. Estos permiten manipular y actuar sobre los datos, proporcionando una forma eficiente y organizada de realizar tareas repetitivas o complejas dentro de un programa."
+    },
+    {
+        "title": "Métodos de Cadena (String)",
+        "description": "toUpperCase() (Cadenas): Transforma todos los caracteres de una cadena a mayúsculas.",
+        "textArea": "let cadena = 'hola';\nconsole.log(cadena.toUpperCase());\n// Resultado: HOLA",
+        "btnURL": "./Try/methodsExer1.html"
+    },
+    {
+        "title": "Métodos de Arreglos (Array)",
+        "description": "map() (Arreglos): Crea un nuevo array con los resultados de llamar a una función dada por cada elemento del array.",
+        "textArea": "let numeros = [1, 2, 3, 4, 5];\nlet numerosDobles = numeros.map(function(numero) {\n\treturn numero * 2;\n});\nconsole.log(numerosDobles);\n// Resultado: [2, 4, 6, 8, 10]",
+        "btnURL": "./Try/methodsExer2.html"
+    },
+    {
+        "title": "Métodos de Objetos (Object)",
+        "description": "hasOwnProperty() (Objetos): Determina si un objeto tiene una propiedad especificada como propia (no heredada).",
+        "textArea": "let persona = {\n\tnombre: 'Juan',\n\tedad: 20\n};\nconsole.log(persona.hasOwnProperty('nombre'));\n// Resultado: true",
+        "btnURL": "./Try/methodsExer3.html"
+    },
+    {
+        "title" : "Explorando el Poder y la Flexibilidad de las Funciones en JavaScript",
+        "description": "Las funciones en JavaScript son bloques de código diseñados para realizar tareas específicas y pueden ser llamados en cualquier momento. Actúan como herramientas modulares que encapsulan lógica y operaciones, facilitando la reutilización del código y mejorando la legibilidad. Las funciones pueden recibir parámetros, realizar operaciones y devolver resultados, lo que permite la creación de programas más eficientes y estructurados. La capacidad de tratar a las funciones como objetos de primera clase permite asignarlas a variables, pasarlas como argumentos y devolverlas como valores, ampliando las posibilidades de programación funcional."
+    },
+    {
+        "title": "Funciones Simples",
+        "description": "Las funciones simples encapsulan tareas específicas y pueden ser invocadas múltiples veces, promoviendo la reutilización del código",
+        "textArea": "function saludar() {\n\tconsole.log('Hola');\n}\nsaludar();\n// Resultado: Hola",
+        "btnURL": "./Try/functionExer1.html"    
+    },
+    {
+        "title": "Funciones de Orden Superior",
+        "description": "Las funciones de orden superior llevan la versatilidad al siguiente nivel, permitiendo la manipulación de funciones como datos, lo que facilita la construcción de código más dinámico y flexible.",
+        "textArea": "function operacionMatematica(operacion, num1, num2) {\n\treturn operacion(num1, num2);\n}\n\nfunction suma(a, b) {\n\treturn a + b;\n}\n\nfunction resta(a, b) {\n\treturn a - b;\n}\n\nlet resultadoSuma = operacionMatematica(suma, 5, 3);\nlet resultadoResta = operacionMatematica(resta, 8, 2);\n\nconsole.log(resultadoSuma); // Salida: 8\nconsole.log(resultadoResta); // Salida: 6",
+        "btnURL": "./Try/functionExer2.html"
+    },
+    {
+        "title": "Domina la Programación Orientada a Objetos con Clases en JavaScript",
+        "description": "Las clases en JavaScript son un pilar fundamental de la programación orientada a objetos introducido en ECMAScript 6. Proporcionan una sintaxis clara y estructurada para modelar entidades del mundo real, permitiendo la creación de objetos con propiedades y métodos relacionados."
+    },
+    {
+        "title": "Definición Básica",
+        "description": "En este ejemplo, se define una clase Animal con un constructor que inicializa propiedades como name y sound. La clase tiene un método makeSound que imprime el sonido del animal.",
+        "textArea": "class Animal {\n\tconstructor(name, sound) {\n\t\tthis.name = name;\n\t\tthis.sound = sound;\n\t}\n\n\tmakeSound() {\n\t\tconsole.log(this.sound);\n\t}\n}\n\nlet perro = new Animal('Perro', 'Guau');\nperro.makeSound();\n// Resultado: Guau",
+        "btnURL": "./Try/classExer1.html"
+    },
+    {
+        "title": "Herencia",
+        "description": "Aquí, la clase Bird extiende la clase Animal, heredando sus propiedades y métodos. Se agrega un nuevo método fly específico para aves.",
+        "textArea": "class Animal {\n\tconstructor(name, sound) {\n\t\tthis.name = name;\n\t\tthis.sound = sound;\n\t}\n\n\tmakeSound() {\n\t\tconsole.log(this.sound);\n\t}\n}\n\nclass Bird extends Animal {\n\tfly() {\n\t\tconsole.log('Volando...');\n\t}\n}\n\nlet ave = new Bird('Ave', 'Pio');\nave.makeSound();\nave.fly();\n// Resultado: Pio\n// Resultado: Volando...",
+        "btnURL": "./Try/classExer2.html"
+    },
+    {
+        "title": "Métodos Estáticos",
+        "description": "En este ejemplo, se utiliza la palabra clave static para crear métodos estáticos en la clase MathOperations. Estos métodos pueden ser llamados directamente en la clase, sin necesidad de instanciarla, para realizar operaciones matemáticas.",
+        "textArea": "class MathOperations {\n\tstatic sumar(a, b) {\n\t\treturn a + b;\n\t}\n\n\tstatic restar(a, b) {\n\t\treturn a - b;\n\t}\n}\n\nconsole.log(MathOperations.sumar(5, 3));\nconsole.log(MathOperations.restar(8, 2));\n// Resultado: 8\n// Resultado: 6",
+        "btnURL": "./Try/classExer3.html"
     }
 ]
