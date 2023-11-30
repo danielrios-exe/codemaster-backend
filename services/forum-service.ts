@@ -1,69 +1,109 @@
+import { BSON, ObjectId } from 'mongodb';
 import MongoDBClient from '../db/mongodb-client';
 
 class ForumService {
     constructor() {}
 
     async getById(id: string) {
-        return {
-            id: 1,
-            title: 'Cómo puedo declarar una variable global?',
-            description:
-                'Estoy tratando de crear una variable global pero al momento de leer el valor es undefined',
-            createdBy: 'Daniel Rios',
-            votes: 3,
-            comments: [
-                {
-                    id: 1,
-                    description:
-                        'Todo depende del lenguaje que vayas a utilizar. En general debes entender que todas las variables se encuentran dentro de un scope. Debes tener la variable en el scope global, es decir, fuera de cualquier función.',
-                    createdBy: 'Mr Java',
-                    votes: 2,
-                },
-                {
-                    id: 2,
-                    description:
-                        'En JavaScript, se declara una variable global cuando se define fuera de una función. En este caso, la variable es accesible para cualquier script que se ejecute en la página, incluidas otras funciones.',
-                    createdBy: 'Mark Zuckerberg',
-                    votes: 1,
-                },
-            ],
-        };
+        const client = await MongoDBClient.getClient();
+        const question = await client
+            .db('codemaster')
+            .collection('questions')
+            .findOne({ _id: new ObjectId(id) });
+
+        if (!question) {
+            throw new Error('Question not found');
+        }
+
+        // Sort the comments by the number of votes in descending order
+        question.comments.sort((a: any, b: any) => b.votes - a.votes);
+        return question;
     }
 
     async get() {
-        const questions = [
-            {
-                id: 1,
-                title: 'Cómo puedo declarar una variable global?',
-                description:
-                    'Estoy tratando de crear una variable global pero al momento de leer el valor es undefined',
-                createdBy: 'Daniel Rios',
-                votes: 3,
-            },
-            {
-                id: 2,
-                title: 'Cómo configuraron prettier para proyectos de JS?',
-                description:
-                    'Recuerdo que en la clase lo mencionaron, pero no recuerdo cómo se hace :(',
-                createdBy: 'Mr Java',
-                votes: 1,
-            },
-            {
-                id: 3,
-                title: 'Es lo mismo una variable y una constante?',
-                description: 'Ayuda por favor, no entiendo la diferencia',
-                createdBy: 'Mark Zuckerberg',
-                votes: 0,
-            },
-        ];
+        const client = await MongoDBClient.getClient();
+        const questions = await client
+            .db('codemaster')
+            .collection('questions')
+            .find({})
+            .toArray();
         return questions;
     }
 
-    create(name: string) {
-        return {
-            id: 1,
-            name: name,
+    async createQuestion(question: any) {
+        const client = await MongoDBClient.getClient();
+        const newDocument = await client
+            .db('codemaster')
+            .collection('questions')
+            .insertOne(question);
+
+        if (!newDocument) {
+            throw new Error('Error creating question');
+        }
+
+        return newDocument;
+    }
+
+    async createComment(comment: any, id: string) {
+        console.log(comment);
+        const client = await MongoDBClient.getClient();
+        const question = await client
+            .db('codemaster')
+            .collection('questions')
+            .findOne({ _id: new ObjectId(id) });
+
+        if (!question) {
+            throw new Error('Error creating comment');
+        }
+
+        // Add id
+        comment._id = new ObjectId();
+
+        const newQuestion = {
+            ...question,
+            comments: [...question.comments, comment],
         };
+
+        const updatedQuestion = await client
+            .db('codemaster')
+            .collection('questions')
+            .updateOne({ _id: new ObjectId(id) }, { $set: newQuestion });
+
+        if (!updatedQuestion) {
+            throw new Error('Error creating comment');
+        }
+
+        return updatedQuestion;
+    }
+
+    async voteComment(id: string, commentId: string, vote: number) {
+        const client = await MongoDBClient.getClient();
+        const question = await client
+            .db('codemaster')
+            .collection('questions')
+            .findOne({ _id: new ObjectId(id) });
+
+        if (!question) {
+            throw new Error('Error creating comment');
+        }
+
+        // Find the comment
+        question.comments.forEach((comment: any) => {
+            if (comment._id.toString() === commentId) {
+                comment.votes += vote;
+            }
+        });
+
+        const updatedQuestion = await client
+            .db('codemaster')
+            .collection('questions')
+            .updateOne({ _id: new ObjectId(id) }, { $set: question });
+
+        if (!updatedQuestion) {
+            throw new Error('Error creating comment');
+        }
+
+        return updatedQuestion;
     }
 }
 

@@ -10,7 +10,6 @@ const userService = new UserService();
 router.post('/token', async (req, res) => {
     try {
         const authHeader: string = req.headers.authorization || '';
-        console.log(authHeader);
         const decodedString: string = authService.getDecodedString(authHeader);
         const { username, password } =
             authService.getCredentials(decodedString);
@@ -18,7 +17,7 @@ router.post('/token', async (req, res) => {
 
         if (isUserValid) {
             const token = authService.createToken({ username, password });
-            return res.send({ token });
+            return res.send({ token, username });
         } else {
             return res.status(401).send({ message: Errors.UNAUTHORIZED });
         }
@@ -34,7 +33,6 @@ router.post('/token', async (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         const user: UserType = req.body;
-        console.log(req.body);
 
         // Validate input
         userService.validateUserInput(user);
@@ -54,7 +52,33 @@ router.post('/register', async (req, res) => {
 });
 
 router.get('/user', async (req, res) => {
-    return res.send(userService.getUserInfo());
+    try {
+        const authHeader: string = req.headers.authorization || '';
+        const { username, isAuthorized } =
+            await AuthenticationService.isAuthorized(authHeader);
+
+        if (!isAuthorized) {
+            return res.status(401).send({ message: Errors.UNAUTHORIZED });
+        }
+        return res.send(await userService.getUserInfo(username));
+    } catch (error) {
+        return res.status(400).send({ message: error });
+    }
+});
+
+router.put('/user', async (req, res) => {
+    try {
+        const authHeader: string = req.headers.authorization || '';
+        const { username, isAuthorized } =
+            await AuthenticationService.isAuthorized(authHeader);
+
+        if (!isAuthorized) {
+            return res.status(401).send({ message: Errors.UNAUTHORIZED });
+        }
+        return res.send(await userService.updateUserInfo(req.body));
+    } catch (error) {
+        return res.status(400).send({ message: error });
+    }
 });
 
 export default router;

@@ -93,26 +93,48 @@ class UserService {
         return { token, createdUser: newUser };
     }
 
-    getUserInfo() {
-        return {
-            _id: '655ef434b6c346af815b301f',
-            username: 'danielrios.exe',
-            name: 'daniel',
-            lastName: 'rios',
-            email: 'danielrios.exe@hotmail.com',
-            ranking: 1,
-            profession: 'developer',
-            desription: 'I am a developer',
-        };
+    async getUserInfo(username: string) {
+        const client = await MongoDBClient.getClient();
+        const user = await client
+            .db('codemaster')
+            .collection('user')
+            .findOne({ username: username });
+
+        if (!user) {
+            throw Errors.NO_USER_FOUND;
+        }
+
+        // Remove password from response
+        user.password = '';
+
+        return user;
     }
 
     validateUserInput(user: User) {
-        console.log(user);
         const { username, password, name, lastName, email } = user;
 
         if (!username || !password || !name || !lastName || !email) {
             throw Errors.INVALID_USER_OBJECT;
         }
+    }
+
+    async updateUserInfo(user: any) {
+        const client = await MongoDBClient.getClient();
+        const { username, name, lastName, email } = user;
+
+        const updatedUser = await client
+            .db('codemaster')
+            .collection('user')
+            .updateOne(
+                { username: username },
+                { $set: { name, lastName, email } },
+            );
+
+        if (!updatedUser) {
+            throw Errors.INTERNAL_SERVER_ERROR;
+        }
+
+        return updatedUser;
     }
 }
 
