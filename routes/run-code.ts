@@ -6,7 +6,6 @@ const vm = require('node:vm');
 const router = express.Router();
 const directorio = path.join('./data', 'loadFile.json')
 
-
 router.get('/', (req, res) => {
     try {
         let data = fs.readFileSync(directorio, 'utf8');
